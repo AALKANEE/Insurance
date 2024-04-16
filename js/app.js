@@ -1,16 +1,32 @@
 //variables
-
+const form=document.querySelector('#request-quote')
 
 
 //eventListeners
-document.addEventListener('DOMContentLoaded',function(){
-    //display the <option>
+eventListeners()
+function eventListeners(){
+    
+    //make option tag for select
+    document.addEventListener('DOMContentLoaded',function(){
+        //display the <option>
+    
+        const html=new HTMLUI()
+        html.displayYears()
+    
+    })
+    
+    //submit form when click
+    form.addEventListener('click',function(e){
+        e.preventDefault()
 
-    const html=new HTMLUI()
-    html.displayYears()
+        //read value from the form
+        const make=document.getElementById('make').value
+        const year=document.getElementById('year').value
+        const level=document.querySelector('input[name="level"]:checked').value
+        console.log(level)
+    })
 
-})
-
+}    
 
 
 //objects
