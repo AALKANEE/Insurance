@@ -36,9 +36,24 @@ HTMLUI.prototype.displayYears=function(){
     //get max year
     const now = new Date().toLocaleDateString('fa-IR')
     let nowYear = now.slice(0,4)
-       nowYear = fixNumbers(nowYear)
-    console.log(nowYear)
+    let max = fixNumbers(nowYear)
+    
 
     //min year
+    let min=max-20
+
+    // access ti the select tag
+    const selectYear=document.querySelector('#year')
+
+    //create for loop for making option tag
+    for(let i=max;i>=min;i--){
+        //create option
+        const option=document.createElement('option')
+        option.value=i
+        option.innerText=i
+
+        //append option to the select year
+        selectYear.appendChild(option)
+    }
 
 }
