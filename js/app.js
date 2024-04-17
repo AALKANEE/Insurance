@@ -1,5 +1,8 @@
+const { html } = require("d3")
+
 //variables
 const form=document.querySelector('#request-quote')
+const html=new HTMLUI()
 
 
 //eventListeners
@@ -10,7 +13,6 @@ function eventListeners(){
     document.addEventListener('DOMContentLoaded',function(){
         //display the <option>
     
-        const html=new HTMLUI()
         html.displayYears()
     
     })
@@ -23,7 +25,14 @@ function eventListeners(){
         const make=document.getElementById('make').value
         const year=document.getElementById('year').value
         const level=document.querySelector('input[name="level"]:checked').value
-        console.log(level)
+
+        //ceck the value of fields are correct
+        if(make==='' || year==='' || level===''){
+            html.displayError('لطفا همه مقادیر به درستی وارد شود')
+        }else{
+            console.log('alright')
+        }
+        
     })
 
 }    
@@ -72,4 +81,18 @@ HTMLUI.prototype.displayYears=function(){
         selectYear.appendChild(option)
     }
 
+}
+
+//display error on the form
+HTMLUI.prototype.displayError=function(err){
+    const div=document.createElement('div')
+    div.classList='error'
+    div.innerText=err
+    // insert div to the form
+    form.insertBefore(div,document.querySelector('.form-group'))
+
+    //remove error after 3second
+    setTimeout(()=>{
+        document.querySelector('.error').remove()
+    },3000)
 }
