@@ -71,8 +71,6 @@ Insurance.prototype.calculatePrice=function(info){
     case '3':
         price=base*1.80
         break;
-    default:
-        break;
    }
    // get the year
    const year=info.year
@@ -190,10 +188,47 @@ HTMLUI.prototype.showResult=function(price,info){
     const result=document.querySelector('#result')
     //create div for showing price
     const div=document.createElement('div')
-    div.innerHTML=`
-    <p class="total">final price: ${price}</p>
+
+    // convert make value to the car
+    let make=info.make
+    /*
+    make1: ==> pride     1.15
+    make2: ==> optima    1.30
+    make3: ==> porches   1.80
+    */
+   switch (make) {
+    case '1':
+        make= 'پراید'
+        break;
+    case '2':
+        make= 'اپتیما'
+        break;
+    case '3':
+        make= 'پورشه'
+        break;
+   }
+    //convert level to the persian
+    let level =info.level
+    /*
+    basic ==> increase 30%
+    complete ==> increase 50%
+    */
+    if(level=='basic'){
+        level= 'ساده'
+    } else {
+        level= 'کامل'
+    }
+      
     
+
+    div.innerHTML=`
+    <p class="header">خلاصه فاکتور</p>
+    <p>مدل ماشین : ${make}</p>
+    <p> سال ساخت : ${info.year}</p>
+    <p> نوع بیمه : ${level}</p>
+    <p class="total">final price: ${price}</p>
     `
+    console.log(info.year)
     // append div to the result
     result.appendChild(div)
 }
