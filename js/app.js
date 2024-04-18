@@ -73,8 +73,38 @@ Insurance.prototype.calculatePrice=function(info){
     default:
         break;
    }
+   // get the year
+   const year=info.year
+   const diffrence=this.getYearDiffrence(year)
+   
+   //3% cheaper for each year
+   price=price-(((diffrence*3)/100)*price)
+   
    console.log(price)
-   return price;
+}
+//
+Insurance.prototype.getYearDiffrence=function(year){
+    let
+    persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g],
+    arabicNumbers  = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g],
+    fixNumbers = function (str)
+    {
+     if(typeof str === 'string')
+     {
+        for(var i=0; i<10; i++)
+        {
+        str = str.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
+        }
+     }
+    return str;
+    };
+
+    //get max year
+    const now = new Date().toLocaleDateString('fa-IR')
+    let nowYear = now.slice(0,4)
+    let max = fixNumbers(nowYear)
+    year=max-year
+    return year;
 }
 
 //every thing related to the html
