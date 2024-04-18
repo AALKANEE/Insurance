@@ -33,6 +33,7 @@ function eventListeners(){
         }else{
             const insurance=new Insurance(make,year,level)
             const price= insurance.calculatePrice(insurance)
+            console.log(price)
         }
         
     })
@@ -80,7 +81,11 @@ Insurance.prototype.calculatePrice=function(info){
    //3% cheaper for each year
    price=price-(((diffrence*3)/100)*price)
    
-   console.log(price)
+
+   //get the level
+   const level=info.level
+   price=this.calculateLevel(level,price)
+   return price
 }
 //
 Insurance.prototype.getYearDiffrence=function(year){
@@ -105,6 +110,19 @@ Insurance.prototype.getYearDiffrence=function(year){
     let max = fixNumbers(nowYear)
     year=max-year
     return year;
+}
+
+Insurance.prototype.calculateLevel=function(level,price){
+    /*
+    basic ==> increase 30%
+    complete ==> increase 50%
+    */
+   if(level=='basic'){
+    price=price*1.30
+   }else{
+        price=price*1.50
+   }
+   return price
 }
 
 //every thing related to the html
