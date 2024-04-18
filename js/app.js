@@ -4,7 +4,7 @@
 const form=document.querySelector('#request-quote')
 
 const html=new HTMLUI()
-const insurance=new Insurance()
+
 
 //eventListeners
 eventListeners()
@@ -31,8 +31,8 @@ function eventListeners(){
         if(make==='' || year==='' || level===''){
             html.displayError('لطفا همه مقادیر به درستی وارد شود')
         }else{
-            insurance(make,year,level)
-            const price= insurance.calculatePrice()
+            const insurance=new Insurance(make,year,level)
+            const price= insurance.calculatePrice(insurance)
         }
         
     })
@@ -50,8 +50,31 @@ function Insurance(make,year,level){
 }
 
 //calculating the price
-Insurance.prototype.calculatePrice=function(){
-    
+Insurance.prototype.calculatePrice=function(info){
+    let price;
+    let base=2000000
+    // get the make value
+    const make=info.make
+    /*
+    make1: ==> pride     1.15
+    make2: ==> optima    1.30
+    make3: ==> porches   1.80
+    */
+   switch (make) {
+    case '1':
+        price=base*1.15
+        break;
+    case '2':
+        price=base*1.30
+        break;
+    case '3':
+        price=base*1.80
+        break;
+    default:
+        break;
+   }
+   console.log(price)
+   return price;
 }
 
 //every thing related to the html
