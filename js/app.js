@@ -19,7 +19,7 @@ function eventListeners(){
     })
     
     //submit form when click
-    form.addEventListener('click',function(e){
+    form.addEventListener('submit',function(e){
         e.preventDefault()
 
         //read value from the form
