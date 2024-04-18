@@ -33,7 +33,7 @@ function eventListeners(){
         }else{
             const insurance=new Insurance(make,year,level)
             const price= insurance.calculatePrice(insurance)
-            console.log(price)
+            html.showResult(price,insurance)
         }
         
     })
@@ -182,4 +182,18 @@ HTMLUI.prototype.displayError=function(err){
     setTimeout(()=>{
         document.querySelector('.error').remove()
     },3000)
+}
+
+// display factor to the form
+HTMLUI.prototype.showResult=function(price,info){
+    //access to the div result
+    const result=document.querySelector('#result')
+    //create div for showing price
+    const div=document.createElement('div')
+    div.innerHTML=`
+    <p class="total">final price: ${price}</p>
+    
+    `
+    // append div to the result
+    result.appendChild(div)
 }
