@@ -31,6 +31,10 @@ function eventListeners(){
         if(make==='' || year==='' || level===''){
             html.displayError('لطفا همه مقادیر به درستی وارد شود')
         }else{
+            let resultDiv= document.querySelector('#result div')
+            if(resultDiv !== null) {
+                resultDiv.remove()
+            }
             const insurance=new Insurance(make,year,level)
             const price= insurance.calculatePrice(insurance)
             html.showResult(price,insurance)
@@ -228,7 +232,17 @@ HTMLUI.prototype.showResult=function(price,info){
     <p> نوع بیمه : ${level}</p>
     <p class="total">final price: ${price}</p>
     `
-    console.log(info.year)
-    // append div to the result
-    result.appendChild(div)
+    // show spinner
+    const spinner =document.querySelector('#loading img')
+    spinner.style.display='block'
+
+    //hide spinner after 3second and show result
+    setTimeout(()=>{
+        //hide spinner
+        spinner.style.display='none'
+        // append div to the result
+        result.appendChild(div)
+    },3000)
+
+
 }
