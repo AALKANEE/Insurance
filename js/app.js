@@ -1,9 +1,10 @@
-const { html } = require("d3")
+
 
 //variables
 const form=document.querySelector('#request-quote')
-const html=new HTMLUI()
 
+const html=new HTMLUI()
+const insurance=new Insurance()
 
 //eventListeners
 eventListeners()
@@ -30,7 +31,8 @@ function eventListeners(){
         if(make==='' || year==='' || level===''){
             html.displayError('لطفا همه مقادیر به درستی وارد شود')
         }else{
-            console.log('alright')
+            insurance(make,year,level)
+            const price= insurance.calculatePrice()
         }
         
     })
@@ -39,6 +41,20 @@ function eventListeners(){
 
 
 //objects
+
+//every thing related to the insurance
+function Insurance(make,year,level){
+    this.make=make
+    this.year=year
+    this.level=level
+}
+
+//calculating the price
+Insurance.prototype.calculatePrice=function(){
+    
+}
+
+//every thing related to the html
 function HTMLUI(){}
 
 // display years
