@@ -6,3 +6,8 @@
   <li>Price calculation based on characteristic formula</li>
   <li>Register the price and display it</li>
 </ol>
+
+
+
+----
+ <footer>&copy;ALKANE</footer>
