@@ -1,4 +1,4 @@
-# Algorithm of Project
+# Algorithm of Insurance Project
 <ol>
   <li>Select the type of car</li>
   <li>Select the year of car manufacture (1383 or newer)</li>
@@ -7,6 +7,7 @@
   <li>Register the price and display it</li>
 </ol>
 
+You can see in [Project](https://aalkanee.github.io/Insurance)
 
 
 ----
